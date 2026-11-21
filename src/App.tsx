@@ -1,7 +1,7 @@
-
 import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
+
 import {
-  Alert,
   Card,
   Col,
   Progress,
@@ -9,7 +9,7 @@ import {
   Statistic,
   Tag,
   Typography,
-  Button
+  Button,
 } from "antd";
 
 import {
@@ -21,20 +21,19 @@ import {
   CalendarCheck,
   Calculator,
   CheckCircle2,
-  Clock3,
   FileText,
-  Eye,
-  Download
 } from "lucide-react";
 
 import dayjs from "dayjs";
+
 import { initialPolicy } from "./data/initialData";
+
 import {
   buildTimeline,
   calculateSummary,
   formatINR,
   formatMonth,
-  STORAGE_KEY
+  STORAGE_KEY,
 } from "./utils/insurance";
 
 import type { Policy } from "./types";
@@ -86,7 +85,6 @@ export default function App() {
 
   return (
     <main className="page">
-
       {/* Header */}
       <header className="topbar">
         <div className="brand">
@@ -98,43 +96,38 @@ export default function App() {
             <Title level={3}>
               Insurance Premium Tracker
             </Title>
+
             <Text>Personal policy overview</Text>
           </div>
         </div>
 
-        <div className="today-chip policy-pdf-chip">
-          <FileText size={19} />
-
-          <Button
-            type="text"
-            onClick={() =>
-              window.open(
-                POLICY_PDF_URL,
-                "_blank",
-                "noopener,noreferrer"
-              )
-            }
-          >
-            Policy Document
-          </Button>
-        </div>
+        <Button
+          className="today-chip policy-pdf-chip"
+          type="text"
+          href={POLICY_PDF_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Policy Document
+        </Button>
       </header>
 
       {/* Policy Details */}
       <section className="policy-card">
-
         <div className="policy-logo">
           <div className="logo-flame">◆</div>
+
           <div className="logo-max">
-            MAX<br />
+            MAX
+            <br />
             <span>LIFE</span>
           </div>
+
           <small>INSURANCE</small>
         </div>
 
         <div className="policy-main">
           <div className="policy-title-row">
-
             <div>
               <Text className="eyebrow">
                 TERM INSURANCE POLICY
@@ -149,11 +142,9 @@ export default function App() {
                 <strong>{policy.policyNumber}</strong>
               </Text>
             </div>
-
           </div>
 
           <div className="policy-facts">
-
             <Fact
               icon={<ShieldCheck />}
               label="Cover Amount"
@@ -177,14 +168,12 @@ export default function App() {
               label="Nominee"
               value={policy.nominee}
             />
-
           </div>
         </div>
       </section>
 
       {/* Premium Summary */}
       <Row gutter={[14, 14]} className="stats-grid">
-
         <Col xs={24} sm={12} xl={6}>
           <MetricCard
             className="green"
@@ -222,14 +211,11 @@ export default function App() {
             value={summary.remainingBalance}
           />
         </Col>
-
       </Row>
 
       {/* Payment Progress */}
       <Card className="progress-card">
-
         <div className="progress-layout">
-
           <div className="progress-ring">
             <Progress
               type="circle"
@@ -249,7 +235,6 @@ export default function App() {
           </div>
 
           <div className="progress-info">
-
             <Title level={3}>
               Payment Progress
             </Title>
@@ -267,7 +252,6 @@ export default function App() {
             />
 
             <div className="progress-subline">
-
               <span>
                 <Text type="secondary">
                   Monthly premium
@@ -287,12 +271,10 @@ export default function App() {
                   {formatINR(summary.actualPaid)}
                 </strong>
               </span>
-
             </div>
           </div>
 
           <div className="balance-side">
-
             <div>
               <Calculator />
 
@@ -325,7 +307,6 @@ export default function App() {
                 </strong>
               </span>
             </div>
-
           </div>
         </div>
       </Card>
@@ -341,7 +322,6 @@ export default function App() {
         }
       >
         <div className="timeline">
-
           <TimelinePoint
             title="First Payment"
             date={dayjs(`${policy.startMonth}-01`)
@@ -373,7 +353,6 @@ export default function App() {
             )}
             status="future"
           />
-
         </div>
       </Card>
 
@@ -383,7 +362,6 @@ export default function App() {
         title="Recent Historical Payments"
       >
         <div className="recent-list">
-
           {recentPayments.map((payment) => (
             <div
               className="recent-row"
@@ -408,10 +386,8 @@ export default function App() {
               </Tag>
             </div>
           ))}
-
         </div>
       </Card>
-
     </main>
   );
 }
@@ -420,9 +396,9 @@ export default function App() {
 function Fact({
   icon,
   label,
-  value
+  value,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
 }) {
@@ -446,9 +422,9 @@ function MetricCard({
   title,
   value,
   suffix,
-  className
+  className,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   value: number;
   suffix?: string;
@@ -458,13 +434,11 @@ function MetricCard({
 
   return (
     <Card className={`metric-card ${className}`}>
-
       <div className="metric-icon">
         {icon}
       </div>
 
       <div className="metric-copy">
-
         <Text>{title}</Text>
 
         <Statistic
@@ -474,7 +448,6 @@ function MetricCard({
           suffix={suffix}
           groupSeparator=","
         />
-
       </div>
     </Card>
   );
@@ -484,7 +457,7 @@ function MetricCard({
 function TimelinePoint({
   title,
   date,
-  status
+  status,
 }: {
   title: string;
   date: string;
@@ -492,7 +465,6 @@ function TimelinePoint({
 }) {
   return (
     <div className={`timeline-point ${status}`}>
-
       <div className="point-dot">
         {status === "done" ? (
           <CheckCircle2 size={18} />
@@ -510,7 +482,6 @@ function TimelinePoint({
             ? "Upcoming"
             : "Planned"}
       </small>
-
     </div>
   );
 }
