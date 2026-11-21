@@ -83,6 +83,19 @@ export default function App() {
     .slice(-5)
     .reverse();
 
+  const nextPaymentInDays = summary.nextPaymentDate
+    ? Math.max(
+        summary.nextPaymentDate.startOf("day").diff(today.startOf("day"), "day"),
+        0
+      )
+    : null;
+
+  const premiumCountdownText = nextPaymentInDays === null
+    ? null
+    : nextPaymentInDays === 0
+      ? "Premium due today"
+      : `Premium due in ${nextPaymentInDays} ${nextPaymentInDays === 1 ? "day" : "days"}`;
+
   return (
     <main className="page">
       {/* Header */}
@@ -305,6 +318,12 @@ export default function App() {
                     "DD MMM YYYY"
                   ) ?? "Completed"}
                 </strong>
+
+                {premiumCountdownText ? (
+                  <small className="payment-countdown">
+                    {premiumCountdownText}
+                  </small>
+                ) : null}
               </span>
             </div>
           </div>
@@ -443,7 +462,12 @@ function MetricCard({
           precision={isMoney ? 2 : 0}
           prefix={isMoney ? "₹" : undefined}
           suffix={suffix}
-          groupSeparator=","
+          formatter={isMoney
+            ? (number) => new Intl.NumberFormat("en-IN", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(Number(number))
+            : undefined}
         />
       </div>
     </Card>
