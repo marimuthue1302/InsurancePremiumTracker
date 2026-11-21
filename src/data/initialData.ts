@@ -1,0 +1,47 @@
+import type { Policy } from "../types";
+
+// User-supplied historical premiums, June 2024 through November 2026.
+export const initialPolicy: Policy = {
+  policyNumber: "161665302",
+  planName: "Max Life Smart Secure Plus Life Cover",
+  policyTermYears: 45,
+  paymentTermYears: 10,
+  coverAmount: 5_000_000,
+  nominee: "Eswaran G",
+  monthlyPremium: 1519.62,
+  paymentDay: 20,
+  startMonth: "2024-06",
+  historyThrough: "2026-11",
+  historicalPayments: [
+    { month: "2024-06", amount: 1582.00 },
+    { month: "2024-07", amount: 1576.64 },
+    { month: "2024-08", amount: 1579.32 },
+    { month: "2024-09", amount: 1579.32 },
+    { month: "2024-10", amount: 1579.32 },
+    { month: "2024-11", amount: 1579.32 },
+    { month: "2024-12", amount: 1579.32 },
+    { month: "2025-01", amount: 1579.32 },
+    { month: "2025-02", amount: 1579.32 },
+    { month: "2025-03", amount: 1579.32 },
+    { month: "2025-04", amount: 1579.32 },
+    { month: "2025-05", amount: 1579.32 },
+    { month: "2025-06", amount: 1793.16 },
+    { month: "2025-07", amount: 1793.16 },
+    { month: "2025-08", amount: 1793.16 },
+    { month: "2025-09", amount: 1793.16 },
+    { month: "2025-10", amount: 1519.62 },
+    { month: "2025-11", amount: 1519.62 },
+    { month: "2025-12", amount: 1519.62 },
+    { month: "2026-01", amount: 1519.62 },
+    { month: "2026-02", amount: 1519.62 },
+    { month: "2026-03", amount: 1519.62 },
+    { month: "2026-04", amount: 1519.62 },
+    { month: "2026-05", amount: 1519.62 },
+    { month: "2026-06", amount: 1519.62 },
+    { month: "2026-07", amount: 1519.62 },
+    { month: "2026-08", amount: 1519.62 },
+    { month: "2026-09", amount: 1519.62 },
+    { month: "2026-10", amount: 1519.62 },
+    { month: "2026-11", amount: 1519.62 }
+  ]
+};
