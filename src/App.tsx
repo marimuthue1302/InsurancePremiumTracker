@@ -160,7 +160,7 @@ export default function App() {
             <Fact
               icon={<Coins />}
               label="Payment Term"
-              value={`${policy.paymentTermYears} Years (${summary.totalMonths} Months)`}
+              value={`${policy.paymentTermYears} Years`}
             />
 
             <Fact
@@ -178,7 +178,7 @@ export default function App() {
           <MetricCard
             className="green"
             icon={<Wallet />}
-            title="Total Premium Paid / Estimated"
+            title="Total Premium Paid"
             value={summary.projectedPaid}
           />
         </Col>
@@ -372,9 +372,6 @@ export default function App() {
                   {formatMonth(payment.month)}
                 </strong>
 
-                <Text type="secondary">
-                  Historical amount provided
-                </Text>
               </div>
 
               <strong>
